@@ -41,8 +41,11 @@
             this.shareDelayCheckbox = new System.Windows.Forms.CheckBox();
             this.audioListBox = new System.Windows.Forms.ListBox();
             this.exitButton = new System.Windows.Forms.Button();
+            this.volumeTrackbar = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize) (this.minDelayNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.maxDelayNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.volumeTrackbar)).BeginInit();
             this.SuspendLayout();
             // 
             // minDelayLabel
@@ -83,7 +86,7 @@
             // 
             // openAudioDirButton
             // 
-            this.openAudioDirButton.Location = new System.Drawing.Point(12, 116);
+            this.openAudioDirButton.Location = new System.Drawing.Point(12, 93);
             this.openAudioDirButton.Name = "openAudioDirButton";
             this.openAudioDirButton.Size = new System.Drawing.Size(123, 23);
             this.openAudioDirButton.TabIndex = 5;
@@ -114,7 +117,7 @@
             // 
             // reloadAudioButton
             // 
-            this.reloadAudioButton.Location = new System.Drawing.Point(141, 116);
+            this.reloadAudioButton.Location = new System.Drawing.Point(141, 93);
             this.reloadAudioButton.Name = "reloadAudioButton";
             this.reloadAudioButton.Size = new System.Drawing.Size(85, 23);
             this.reloadAudioButton.TabIndex = 8;
@@ -142,7 +145,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(232, 116);
+            this.exitButton.Location = new System.Drawing.Point(232, 94);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(46, 23);
             this.exitButton.TabIndex = 11;
@@ -150,12 +153,34 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // volumeTrackbar
+            // 
+            this.volumeTrackbar.LargeChange = 10;
+            this.volumeTrackbar.Location = new System.Drawing.Point(118, 125);
+            this.volumeTrackbar.Maximum = 100;
+            this.volumeTrackbar.Name = "volumeTrackbar";
+            this.volumeTrackbar.Size = new System.Drawing.Size(104, 45);
+            this.volumeTrackbar.SmallChange = 2;
+            this.volumeTrackbar.TabIndex = 12;
+            this.volumeTrackbar.TickFrequency = 10;
+            this.volumeTrackbar.Value = 50;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(12, 133);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Volume (0-100)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(445, 164);
+            this.ClientSize = new System.Drawing.Size(445, 182);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.volumeTrackbar);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.audioListBox);
             this.Controls.Add(this.shareDelayCheckbox);
@@ -176,8 +201,14 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize) (this.minDelayNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.maxDelayNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.volumeTrackbar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.TrackBar volumeTrackbar;
 
         private System.Windows.Forms.Button exitButton;
 

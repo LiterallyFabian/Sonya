@@ -58,5 +58,17 @@ namespace InterruptedSilence.Properties {
                 this["shareDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int volume {
+            get {
+                return ((int)(this["volume"]));
+            }
+            set {
+                this["volume"] = value;
+            }
+        }
     }
 }

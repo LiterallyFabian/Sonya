@@ -29,6 +29,7 @@ namespace InterruptedSilence
             minDelayNumber.Value = Properties.Settings.Default.minDelay;
             maxDelayNumber.Value = Properties.Settings.Default.maxDelay;
             shareDelayCheckbox.Checked = Properties.Settings.Default.shareDelay;
+            volumeTrackbar.Value = Properties.Settings.Default.volume;
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -79,6 +80,7 @@ namespace InterruptedSilence
             Properties.Settings.Default.shareDelay = _shareDelay;
             Properties.Settings.Default.minDelay = minDelayNumber.Value;
             Properties.Settings.Default.maxDelay = maxDelayNumber.Value;
+            Properties.Settings.Default.volume = volumeTrackbar.Value;
             Properties.Settings.Default.Save();
             Application.Exit();
         }
@@ -132,11 +134,12 @@ namespace InterruptedSilence
             }
         }
 
-        private static void PlaySound(string url)
+        private void PlaySound(string url)
         {
             WindowsMediaPlayer player = new WindowsMediaPlayer();
 
             player.URL = url;
+            player.settings.volume = volumeTrackbar.Value;
             player.controls.play();
         }
         
