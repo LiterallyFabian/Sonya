@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using WMPLib;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -37,6 +36,7 @@ namespace InterruptedSilence
             _isActive = true;
             startButton.Enabled = false;
             stopButton.Enabled = true;
+            reloadAudioButton.Enabled = false;
             
             Text = "Interrupted Silence - Active";
             
@@ -48,6 +48,7 @@ namespace InterruptedSilence
             _isActive = false;
             startButton.Enabled = true;
             stopButton.Enabled = false;
+            reloadAudioButton.Enabled = true;
             
             Text = "Interrupted Silence";
         }
@@ -117,15 +118,16 @@ namespace InterruptedSilence
             
             while(_isActive && !_shareDelay)
             {
-                foreach (string file in _audioFiles)
+                // ReSharper disable once ForCanBeConvertedToForeach
+                for (int i = 0; i < _audioFiles.Count; i++)
                 {
                     double delay = RandomDouble((double) minDelayNumber.Value, (double) maxDelayNumber.Value);
-                    await Task.Delay((int)(delay*1000));
-                    
+                    await Task.Delay((int) (delay * 1000));
+
                     if (!_isActive || _shareDelay)
                         break;
-                
-                    PlaySound(file);
+
+                    PlaySound(_audioFiles[i]);
                 }
             }
         }
