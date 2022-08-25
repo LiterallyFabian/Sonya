@@ -39,6 +39,7 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.reloadAudioButton = new System.Windows.Forms.Button();
             this.shareDelayCheckbox = new System.Windows.Forms.CheckBox();
+            this.audioListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize) (this.minDelayNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.maxDelayNumber)).BeginInit();
             this.SuspendLayout();
@@ -118,6 +119,7 @@
             this.reloadAudioButton.TabIndex = 8;
             this.reloadAudioButton.Text = "Reload audio";
             this.reloadAudioButton.UseVisualStyleBackColor = true;
+            this.reloadAudioButton.Click += new System.EventHandler(this.reloadAudioButton_Click);
             // 
             // shareDelayCheckbox
             // 
@@ -127,13 +129,23 @@
             this.shareDelayCheckbox.TabIndex = 9;
             this.shareDelayCheckbox.Text = "Share delay";
             this.shareDelayCheckbox.UseVisualStyleBackColor = true;
+            this.shareDelayCheckbox.CheckedChanged += new System.EventHandler(this.shareDelayCheckbox_CheckedChanged);
+            // 
+            // audioListBox
+            // 
+            this.audioListBox.FormattingEnabled = true;
+            this.audioListBox.Location = new System.Drawing.Point(284, 9);
+            this.audioListBox.Name = "audioListBox";
+            this.audioListBox.Size = new System.Drawing.Size(149, 147);
+            this.audioListBox.TabIndex = 10;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(268, 164);
+            this.ClientSize = new System.Drawing.Size(445, 164);
+            this.Controls.Add(this.audioListBox);
             this.Controls.Add(this.shareDelayCheckbox);
             this.Controls.Add(this.reloadAudioButton);
             this.Controls.Add(this.stopButton);
@@ -154,6 +166,8 @@
             ((System.ComponentModel.ISupportInitialize) (this.maxDelayNumber)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.ListBox audioListBox;
 
         private System.Windows.Forms.CheckBox shareDelayCheckbox;
 
