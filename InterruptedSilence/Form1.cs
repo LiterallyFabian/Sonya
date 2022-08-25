@@ -13,9 +13,9 @@ namespace InterruptedSilence
     {
         private bool _isActive = false;
         private bool _shareDelay = false;
-        private const string _audioDirectory = "audio";
-        private static Random _random = new Random(); 
-        private List<string> _audioFiles = new List<string>();
+        private const string AudioDirectory = "audio";
+        private static readonly Random Random = new Random(); 
+        private readonly List<string> _audioFiles = new List<string>();
         
         public Form1()
         {
@@ -26,7 +26,10 @@ namespace InterruptedSilence
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadAudio();  
+            LoadAudio();
+            minDelayNumber.Value = Properties.Settings.Default.minDelay;
+            maxDelayNumber.Value = Properties.Settings.Default.maxDelay;
+            shareDelayCheckbox.Checked = Properties.Settings.Default.shareDelay;
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -51,10 +54,10 @@ namespace InterruptedSilence
 
         private void openAudioDirButton_Click(object sender, EventArgs e)
         {
-            if (!Directory.Exists(_audioDirectory))
-                Directory.CreateDirectory(_audioDirectory);
+            if (!Directory.Exists(AudioDirectory))
+                Directory.CreateDirectory(AudioDirectory);
 
-            Process.Start(_audioDirectory);
+            Process.Start(AudioDirectory);
         }
 
         private void reloadAudioButton_Click(object sender, EventArgs e)
@@ -69,17 +72,27 @@ namespace InterruptedSilence
             if(_isActive)
                 StartLoop();
         }
+        
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.shareDelay = _shareDelay;
+            Properties.Settings.Default.minDelay = minDelayNumber.Value;
+            Properties.Settings.Default.maxDelay = maxDelayNumber.Value;
+            Properties.Settings.Default.Save();
+            Application.Exit();
+        }
+        
         #endregion
 
         private void LoadAudio()
         {
-            if (!Directory.Exists(_audioDirectory))
-                Directory.CreateDirectory(_audioDirectory);
+            if (!Directory.Exists(AudioDirectory))
+                Directory.CreateDirectory(AudioDirectory);
             
             _audioFiles.Clear();
             audioListBox.Items.Clear();
             
-            foreach (var file in Directory.GetFiles(_audioDirectory, "*.mp3"))
+            foreach (var file in Directory.GetFiles(AudioDirectory, "*.mp3"))
             {
                 _audioFiles.Add(file);
                 audioListBox.Items.Add(Path.GetFileName(file));
@@ -99,7 +112,7 @@ namespace InterruptedSilence
                 if (!_isActive || !_shareDelay)
                     break;
                 
-                PlaySound(_audioFiles[_random.Next(0, _audioFiles.Count)]);
+                PlaySound(_audioFiles[Random.Next(0, _audioFiles.Count)]);
             }
             
             while(_isActive && !_shareDelay)
@@ -127,7 +140,7 @@ namespace InterruptedSilence
         
         public double RandomDouble(double minimum, double maximum)
         { 
-            return _random.NextDouble() * (maximum - minimum) + minimum;
+            return Random.NextDouble() * (maximum - minimum) + minimum;
         }
     }
 }

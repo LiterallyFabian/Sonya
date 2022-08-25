@@ -40,6 +40,7 @@
             this.reloadAudioButton = new System.Windows.Forms.Button();
             this.shareDelayCheckbox = new System.Windows.Forms.CheckBox();
             this.audioListBox = new System.Windows.Forms.ListBox();
+            this.exitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.minDelayNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.maxDelayNumber)).BeginInit();
             this.SuspendLayout();
@@ -139,12 +140,23 @@
             this.audioListBox.Size = new System.Drawing.Size(149, 147);
             this.audioListBox.TabIndex = 10;
             // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(232, 116);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(46, 23);
+            this.exitButton.TabIndex = 11;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(445, 164);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.audioListBox);
             this.Controls.Add(this.shareDelayCheckbox);
             this.Controls.Add(this.reloadAudioButton);
@@ -166,6 +178,8 @@
             ((System.ComponentModel.ISupportInitialize) (this.maxDelayNumber)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button exitButton;
 
         private System.Windows.Forms.ListBox audioListBox;
 
